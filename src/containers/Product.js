@@ -1,194 +1,150 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import BreadCrumbComponent from './components/BreadCrumb';
 
-import { Button, Card, Container, Row, Col,Form} from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 // import { GetApprovedBlogs ,baseUrl} from '../../actions/user';
-import HeaderImg from '../assets/product1.png';
 import CloseIcon from '@mui/icons-material/Close';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import { connect } from "react-redux";
+import { useHistory, useLocation } from "react-router";
+import ProductCard from './ProductCard';
+import { searchBarSetting } from "../actions/Account";
+import { getBanner, getBrandsData, getSeasonData, getTodayDeal } from '../actions/Account';
 
-const BreadData=[
-    {label:'Home',route:'/'},
-    {label:'Men',route:'/'},
-    {label:'Footerwear',route:'/'},
+const BreadData = [
+    { label: 'Home', route: '/' },
+    { label: 'Men', route: '/' },
+    { label: 'Footerwear', route: '/' },
 ]
 
-const carditem = [{}, {}, {},{},{},{}]
+// let Products = [{
+//     name: "shoe",
+//     description: "edes",
+//     after_sale_price: "232",
+//     actual_price: "122",
+//     url: "",
+//     ProductDetails: "sa",
+//     product: "da",
+//     wishlist: "true",
+//     pid: "1"
+// }] 
 
-const dropItem = [
-    { 
-        title:'Color',
-        option:[
-            {text:'Red',value:''},{text:'Black',value:''},{text:'Blue',value:''}
-        ]
-    }, 
-    { 
-        title:'Brand',
-        option:[
-            {text:'XYZ',value:''},{text:'ABC',value:''},{text:'PQR',value:''}
-        ]
-    }, 
-    { 
-        title:'Size',
-        option:[
-            {text:'10',value:''},{text:'20',value:''},{text:'30',value:''}
-        ]
-    },
-    { 
-        title:'Price',
-        option:[
-            {text:'100',value:''},{text:'200',value:''},{text:'300',value:''}
-        ]
-    },
-    { 
-        title:'Material',
-        option:[
-            {text:'Nylon',value:''},{text:'Wollen',value:''},{text:'Silk',value:''}
-        ]
-    },
-    { 
-        title:'Gender',
-        option:[
-            {text:'Male',value:''},{text:'Female',value:''},{text:'Others',value:''}
-        ]
-    }
-]
+function Product({ products, categories, filteredproducts, setSearchBar }) {
+    const [Products, setProducts] = useState();
+    const [seasonData, setSeasonData] = useState([]);
 
+    useEffect(() => {
+        getSeasonData().then((card) => {
+            setSeasonData(card);
+            setProducts([...seasonData]);
+        });
+    }, []);
 
-export default function HomeComponent() {
+    // window.scrollTo(0, 0);
+    // let location = useLocation();
+    // console.log(filteredproducts.length);
 
-    const [filterArray, setfilterArray] = useState([]);
-    
-    // console.log("filterArray",filterArray);
-    
-    const onChange=(e)=>{
-        const newItem = [...filterArray, e.target.value];
-        console.log("onChange newItem",newItem);
-        
-        setfilterArray(newItem);
-    }
+    const history = useHistory();
+    const productDetail = (prod) => {
+        history.push({
+            pathname: "/productDetails",
+            state: { product: prod, products: products },
+        });
+    };
 
-    const removeFilter = index => {
-        const newItem = [...filterArray];
-        console.log("removeFilter newItem",newItem);
-        newItem.splice(index, 1);
-        setfilterArray(newItem);
-      };
-
-
-    
-     
+    // useEffect(() => {
+    //     setSearchBar(true);
+    //     document.title = "Products";
+    //     return () => {
+    //         setSearchBar(false);
+    //     };
+    // }, []);
 
     return (
         <div style={{ paddingBottom: '50px' }}>
             <section>
                 <Container>
-                    <div  style={{marginTop:'50px'}}>
-                   <BreadCrumbComponent data={BreadData}/>
+                    <div style={{ marginTop: '50px' }}>
+                        <BreadCrumbComponent data={BreadData} />
 
                     </div>
-                    
-                    <div style={{marginTop:'50px'}}>
+
+                    {/* <div style={{ marginTop: '50px' }}>
                         <div className='my-4'>
-                            <h6  className='text3 text-dark'>FILTER BY</h6>
+                            <h6 className='text3 text-dark'>FILTER BY</h6>
                         </div>
                         <div>
                             <Row>
-                                {
-                                    dropItem.map((row)=>(
-                                        <Col lg={2}>
-                                            <Form.Select className='text3' style={{color:'#113B6B'}} onChange={(e)=>onChange(e)}>
-                                              <option>{row.title}</option>
-                                              {
-                                                  row.option.map((row)=>(
-                                                      <option value={row.text}>{row.text}</option>
-                                                  ))
-                                              }
-                                            </Form.Select>
-                                        </Col>
+                                {filteredproducts.length > 0
+                                    ? filteredproducts.map((product) => (
+                                        <ProductCard name={product.name}
+                                            description={product.description}
+                                            after_sale_price={product.after_sale_price}
+                                            actual_price={product.actual_price}
+                                            url={product.image_urls}
+                                            ProductDetails={productDetail}
+                                            product={product}
+                                            wishlist={product.Wishlist} />
                                     ))
-                                }
+                                    : products.map((product) =>
+                                        product.cid == location.state ? (
+                                            <ProductCard name={product.name}
+                                                description={product.description}
+                                                after_sale_price={product.after_sale_price}
+                                                actual_price={product.actual_price}
+                                                url={product.image_urls}
+                                                ProductDetails={productDetail}
+                                                product={product}
+                                                wishlist={product.Wishlist} />
+                                        ) : (
+                                            ""
+                                        )
+                                    )}
                             </Row>
                         </div>
-                    </div>
-                    
-                    <div style={{marginTop:'50px'}}>
+                    </div> */}
+
+                    <div style={{ marginTop: '50px' }}>
                         <div className='my-4'>
-                            <h6  className='text3 text-dark'>SORT BY</h6>
+                            <h6 className='text3 text-dark'>SORT BY</h6>
                         </div>
                         <div>
                             <Row>
                                 <Col lg={2}>
-                                    <Form.Select className='text3' style={{color:'#113B6B'}} aria-label="Default select example">
-                                      <option >Relevant</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
+                                    <Form.Select className='text3' style={{ color: '#113B6B' }} aria-label="Default select example">
+                                        <option >Relevant</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
                                     </Form.Select>
                                 </Col>
                             </Row>
                         </div>
                     </div>
 
-                    <div style={{marginTop:filterArray.length>0?'50px':'0px'}}>
-                        <Row>
-                            {
-                                filterArray.map((row,index)=>(
-                                    <Col lg={2} className='my-2'>
-                                        <div className='p-2 d-flex' style={{width:'100%',border:'2px dashed #113B6B',justifyContent:'space-between'}}>
-                                            <p className='text3 m-0' style={{color:'#113B6B'}} >{row}</p>
-                                            <CloseIcon style={{color:'#113B6B'}} onClick={()=>removeFilter(index)}/>
-                                        </div>
-                                    </Col>
-                                ))
-                            }
-                        </Row>
-                    </div>
                 </Container>
             </section>
 
-            <section style={{marginTop:'50px'}}>
+            <section style={{ marginTop: '50px' }}>
                 <Container>
                     <div className='my-4'>
                         <h6 className='text-center home-text1'>6 RESULTS FOUND</h6>
                     </div>
                     <Row>
-                        {
-                            carditem.map(() => (
-                                <Col lg={4} xs={12} className='my-4 px-2'>
-                                    <Card className='p-0 border-0' style={{ width: '100%' ,background:'transparent'}}>
-                                        {/* <div style={{width:'100%'}}> */}
-                                        {/* </div> */}
-                                            <FavoriteBorderIcon style={{position:'relative',left:"90%",top:'40px'}}/>
-                                        <Card.Img variant="top" src={HeaderImg} style={{ height: '300px', width: '100%' }} />
-                                        <Card.Body className='p-0' >
-                                            <div className='py-3'>
-                                                <Card.Title className='text3' style={{ color: 'black',fontWeight:'600' }}>FLATHEADS Lightweight Casual Shoes for Men | Super Breathable Men’s Sneakers</Card.Title>
-                                                <div>
-                                                    <p className='text3' style={{color: 'rgba(0, 0, 0, 0.5)'}}>Sold By : 
-                                                    <span style={{color: 'black'}}> Nike</span></p>
-                                                </div>
-                                                <div style={{display:'flex'}}>
-                                                    <div style={{width:'35%'}}>
-                                                        <p className='text3 mb-0' style={{color:'#000000',fontSize:'24px',fontWeight:'600' }}>₹620.00</p>
-                                                        <p className='text3 mb-0' style={{color:'#000000',textDecoration:"line-through"}}>₹670.00</p>
-                                                    </div>
-                                                    <div className='px-1' style={{width:'65%',background: 'rgba(255, 255, 255, 0.49)',display:'flex',justifyContent:'space-between'}}>
-                                                        <p className='text3 mb-0 div-center' style={{color:'#3BA732',fontWeight:'bold'}}>12% OFF</p>
-                                                        <p className='text3 mb-0 div-center' style={{color:'#3BA732'}}>Saved :  
-                                                           <span style={{fontWeight:'bold'}}> ₹50.00</span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <Button className='custom-btn1' style={{ width: '100%' }} >Buy Now</Button>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                            ))
+                        {Products?.map((product) => (
+                            <ProductCard
+                                actual_price={product.actual_price}
+                                ProductDetails={productDetail}
+                                name={product.name}
+                                description={product.description}
+                                after_sale_price={product.sale_price}
+                                price={product.actual_price}
+                                url={product.option_set}
+                                discount={product.discount}
+                                slug={product.slug}
+                                product={product}
+                            />
+                        ))
                         }
                     </Row>
                 </Container>
@@ -197,3 +153,25 @@ export default function HomeComponent() {
         </div>
     )
 }
+const mapStateToProps = (state) => ({
+    category: state.product.categories,
+    product: state.product.products,
+    cart: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
+// const mapStateToProps = (state) => ({
+//     products: state.product.products,
+//     categories: state.product.categories,
+//     filteredproducts: state.product.filteredProducts,
+// });
+
+// const mapDispatchToProps = (dispatch) => ({
+//     setSearchBar: (val) => {
+//         dispatch(searchBarSetting(val));
+//     },
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Product);

@@ -154,3 +154,13 @@
     line-height: 75px;
     color: #113B6B;
 }
+.cardshadow{
+    -webkit-box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.75);;
+}
+.center{
+display: flex;
+align-items: center;
+justify-content: center;
+}
