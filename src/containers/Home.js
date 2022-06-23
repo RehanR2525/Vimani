@@ -63,30 +63,34 @@ export default function HomeComponent() {
     }, []);
 
       
-    // console.log(banner[0].image);
-    // console.log(seasonData);
+
     return (
 
         <>
         <div className="MainComponent">
         <Carousel fade>
                 <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={banner && banner[0].image}
-                    alt="First slide"
-                    />
+                    { banner.length>0 && (  
+                         <img
+                        className="d-block w-100"
+                        src={ banner[0].image}
+                        alt="First slide"
+                        />)
+                    }
                     <Carousel.Caption>
                     <h3>First slide label</h3>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
+
+                { banner.length>0 && (  
                     <img
                     className="d-block w-100"
-                    src={banner && banner[1].image}
+                    src={ banner[1].image}
                     alt="Second slide"
                     />
+                )}
 
                     <Carousel.Caption>
                     <h3>Second slide label</h3>
@@ -94,11 +98,13 @@ export default function HomeComponent() {
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
+                { banner.length>0 && (  
                     <img
                     className="d-block w-100"
-                    src={banner && banner[2].image}
+                    src={ banner[2].image}
                     alt="Third slide"
                     />
+                )}
 
                     <Carousel.Caption>
                     <h3>Third slide label</h3>
