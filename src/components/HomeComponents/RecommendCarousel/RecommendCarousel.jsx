@@ -8,8 +8,6 @@ const RecommendCarousel = ({data}) => {
   const sliderClick = (slider)=>{
     alert("hello world");
   }
-
-   console.log(data);
   const slides = [
     {image:`${data && data[0].image}`,title:`${data && data[0].name}`,description:`${data && data[0].max_discount.discount__max}% - ${data && data[0].min_discount.discount__avg}% Off`,clickEvent:sliderClick},
     {image:`${data && data[1].image}`,title:`${data && data[1].name}`,description:`${data && data[1].max_discount.discount__max}% - ${data && data[1].min_discount.discount__avg}% Off`,clickEvent:sliderClick},

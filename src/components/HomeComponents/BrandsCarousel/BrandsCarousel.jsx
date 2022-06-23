@@ -9,7 +9,6 @@ const BrandssCarousel = ({data}) => {
     alert("hello world");
   }
 
-   console.log(data);
   const slides = [
     {image:`${data && data[0].image}`,title:`${data && data[0].name}`,description:`${data && data[0].max_price.sale_price__max}% - ${data && data[0].min_price.sale_price__min}% Off`,clickEvent:sliderClick},
     {image:`${data && data[1].image}`,title:`${data && data[1].name}`,description:`${data && data[1].max_price.sale_price__max}% - ${data && data[1].min_price.sale_price__min}% Off`,clickEvent:sliderClick},

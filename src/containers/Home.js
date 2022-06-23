@@ -45,6 +45,7 @@ export default function HomeComponent() {
 
     useEffect(() => {
         getBanner().then((banner) => {
+        
             setBanners(banner);
         });
         getSeasonData().then((card) => {
@@ -62,13 +63,49 @@ export default function HomeComponent() {
     }, []);
 
       
-    console.log(recommendedData);
+    // console.log(banner[0].image);
     // console.log(seasonData);
     return (
 
         <>
         <div className="MainComponent">
+        <Carousel fade>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src={banner && banner[0].image}
+                    alt="First slide"
+                    />
+                    <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src={banner && banner[1].image}
+                    alt="Second slide"
+                    />
 
+                    <Carousel.Caption>
+                    <h3>Second slide label</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src={banner && banner[2].image}
+                    alt="Third slide"
+                    />
+
+                    <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+</Carousel>
 
         <div className="homeContainer">
       

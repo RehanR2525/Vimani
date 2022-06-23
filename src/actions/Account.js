@@ -126,9 +126,9 @@ export const DeleteAddress = () => {
 
 export const getBanner = async () => {
     return axios
-        .post(`${baseURL}/api/getbanners`)
+        .get(`${baseURL}rest/banners`)
         .then((res) => {
-            return res.data.banner;
+            return res.data;
         })
         .catch((err) => {
             console.log(err);
