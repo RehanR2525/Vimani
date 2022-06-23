@@ -146,9 +146,21 @@ export const getSeasonData = async () => {
         });
 };
 
+
+export const getRecommendedData = async () => {
+    return axios
+        .get(`${baseURL}rest/recommended_products`)
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
 export const getTodayDeal = async () => {
     return axios
-        .get(`${baseURL}rest/season`)
+        .get(`${baseURL}rest/topdeal`)
         .then((res) => {
             return res.data;
         })
@@ -159,7 +171,7 @@ export const getTodayDeal = async () => {
 
 export const getBrandsData = async () => {
     return axios
-        .get(`${baseURL}rest/season`)
+        .get(`${baseURL}rest/top_brands`)
         .then((res) => {
             return res.data;
         })

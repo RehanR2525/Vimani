@@ -1,0 +1,39 @@
+.details h2 {
+    font-weight: bold;
+}
+
+
+.imageBox{
+    height: 80%;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+
+} 
+
+.imageGalleryContainer{
+    display: grid;
+}
+
+.imageGallery{
+    /* border: 1px solid red; */
+     /* display: grid;
+grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); */
+        display: grid;
+        grid-template-columns: auto auto ;
+        padding: 10px;
+        grid-gap: 20px;
+        width:90%;
+        height: 50%;
+}
+
+.itemDetials{
+    font-size: small;
+}
+
+.CardImages{
+    /* border:1px solid red; */
+    height: 100%;
+    width: 100%;
+    border: none;
+}
