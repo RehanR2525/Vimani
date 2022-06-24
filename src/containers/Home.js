@@ -5,6 +5,7 @@ import TodayDetailComponent from "../components/HomeComponents/TodayDetailCompon
 import DealsCarousel from "../components/HomeComponents/DealsCarousel/DealsCarousel.jsx";
 import BrandsCarousel from "../components/HomeComponents/BrandsCarousel/BrandsCarousel.jsx";
 import RecommendCarousel from "../components/HomeComponents/RecommendCarousel/RecommendCarousel.jsx";
+import DealsSliderComponent from "../components/HomeComponents/DealsSliderComponent/DealsSliderComponent.jsx";
 import { Button, Card, Container, Row, Col, Carousel } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 // import { GetApprovedBlogs ,baseUrl} from '../../actions/user';
@@ -12,7 +13,8 @@ import HeaderImg from '../assets/header.png';
 // import Slider from "react-slick";
 import { getBanner, getBrandsData, getSeasonData, getTodayDeal,getRecommendedData } from '../actions/Account';
 import './Home.css';
-
+import banner2 from  '.../../../public/images/banner2.jpg';
+import banner3 from  '.../../../public/images/banner3.jpg';
 
 
 const settings = {
@@ -73,7 +75,7 @@ export default function HomeComponent() {
                     { banner.length>0 && (  
                          <img
                         className="d-block w-100"
-                        src={ banner[0].image}
+                        src="https://img.freepik.com/free-vector/horizontal-sale-banner-template_23-2148897328.jpg?t=st=1656064458~exp=1656065058~hmac=9cc95f251734e477226a1ac6959cd092dbf12d82efdea983880bebdccc328780&w=1380"
                         alt="First slide"
                         />)
                     }
@@ -86,7 +88,7 @@ export default function HomeComponent() {
                 { banner.length>0 && (  
                     <img
                     className="d-block w-100"
-                    src={ banner[1].image}
+                    src="https://img.freepik.com/free-psd/summer-sale-70-discount_23-2148476960.jpg?t=st=1656064458~exp=1656065058~hmac=07559a6dbacaa55b706df15cadf8b011200d9c13258f7f95f0b4d0750fb30690&w=1380"
                     alt="Second slide"
                     />
                 )}
@@ -98,7 +100,7 @@ export default function HomeComponent() {
                 { banner.length>0 && (  
                     <img
                     className="d-block w-100"
-                    src={ banner[2].image}
+                    src={banner2}
                     alt="Third slide"
                     />
                 )}
@@ -107,7 +109,7 @@ export default function HomeComponent() {
         
                     </Carousel.Caption>
                 </Carousel.Item>
-</Carousel>
+       </Carousel>
 
         <div className="homeContainer">
       
@@ -115,7 +117,7 @@ export default function HomeComponent() {
            <div className="grid HeaderComponent">
             
              <TodayDetailComponent   data = {seasonData}/>
-
+              {/* <DealsSliderComponent/> */}
            </div>
 
 
@@ -127,8 +129,8 @@ export default function HomeComponent() {
 
         <div className="SliderComponent">
             <h2 className="Heading">Today's Deals</h2>
-             <DealsCarousel data={todayDeal.results}/>
-
+             {/* <DealsCarousel data={todayDeal.results}/> */}
+             <DealsSliderComponent  data={todayDeal.results}/> 
            </div>
         <div className="SliderComponent">
           <h2 className="Heading">Recommended For You</h2>

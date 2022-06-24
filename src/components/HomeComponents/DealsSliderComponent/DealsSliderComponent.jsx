@@ -1,14 +1,10 @@
-import React,{useState} from 'react'
-import ReactCardSlider from 'react-card-slider-component';
-// import ReactCardSlider from '../DealsSlider/DealsSlider.jsx';
-import { AiOutlineArrowRight,AiOutlineArrowLeft } from "react-icons/ai";
+import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./BrandsCarousel.css";
-import BrandsCard from './BrandsCard.js';
-
-
+import "./DealsSliderComponent.css";
+import { AiOutlineArrowRight,AiOutlineArrowLeft } from "react-icons/ai";
+import SliderCard from './SliderCard';
 
 const PreviousBtn = (props) => {
 
@@ -64,19 +60,19 @@ const carouselProperties = {
   ],
 };
 
-const BrandssCarousel = ({data}) => {
 
+const DealsSliderComponent = ({data}) => {
   return (
     <>
-    <div style={{ margin: "30px" }} className="carousel">
+       <div style={{ margin: "30px" }} className="carousel">
           <Slider {...carouselProperties}>
             {data && data.map((item) => (
-              <BrandsCard item={item} />
+              <SliderCard item={item} />
             ))}
           </Slider>
-     </div>
+        </div>
      </>
-  );
+  )
 }
 
-export default BrandssCarousel
+export default DealsSliderComponent
