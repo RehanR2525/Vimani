@@ -6,6 +6,12 @@
 
 
 .homeContainer{
+    margin-top: -8rem;
+    margin-bottom: 4rem;
+    height: 100vh;
+
+}
+.homeContainer2{
     margin-top: -11rem;
     margin-bottom: 1rem;
     height: 100vh;
@@ -14,13 +20,14 @@
 
 .SliderComponent{
     background-color: white;
-
     padding: 0.5rem 1rem 1rem 1rem;
     margin-bottom: 2rem;
     margin-right: 6rem;
     margin-left: 6rem;
 }
+
 .Heading{
+    color: rgb(17, 59, 107);
     margin-bottom: -2rem;
     font-weight: bold;
     margin-top: 5px;

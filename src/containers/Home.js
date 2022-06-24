@@ -138,7 +138,7 @@ export default function HomeComponent() {
            <div className="homeContainer">
       
            
-           <div className="HeaderComponent">
+           <div className="HeaderComponent2">
              <TodayDetailComponent   data = {seasonData}/>
 
            </div>
