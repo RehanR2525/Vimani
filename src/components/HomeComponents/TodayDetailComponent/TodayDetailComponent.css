@@ -40,7 +40,7 @@
 .cards{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
-    padding: 20px;
+    padding: 10px;
     grid-gap: 40px;
     width:90%;
     margin-top: 10rem;
@@ -52,7 +52,6 @@
     display: flex;
 
     align-items: center;
-    border-radius: 20px; 
     box-shadow: 0 0 30px rgba(0,0,0,0.18);
 }
 .container{

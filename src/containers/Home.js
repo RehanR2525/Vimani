@@ -15,7 +15,7 @@ import { getBanner, getBrandsData, getSeasonData, getTodayDeal,getRecommendedDat
 import './Home.css';
 import banner2 from  '.../../../public/images/banner2.jpg';
 import banner3 from  '.../../../public/images/banner3.jpg';
-
+import './Home.css';
 
 const settings = {
     dots: true,
@@ -112,18 +112,15 @@ export default function HomeComponent() {
        </Carousel>
 
         <div className="homeContainer">
-      
-           
-           <div className="grid HeaderComponent">
+           <div className="HeaderComponent">
             
              <TodayDetailComponent   data = {seasonData}/>
-              {/* <DealsSliderComponent/> */}
            </div>
 
 
 
-            <div style={{ paddingBottom: '50px'}}>
-             </div>
+            {/* <div style={{ paddingBottom: '50px'}}>
+             </div> */}
 
          </div>
 
@@ -146,15 +143,15 @@ export default function HomeComponent() {
            <div className="homeContainer">
       
            
-           <div className="grid HeaderComponent">
+           <div className="HeaderComponent">
              <TodayDetailComponent   data = {seasonData}/>
 
            </div>
 
 
 
-            <div style={{ paddingBottom: '50px'}}>
-             </div>
+            {/* <div style={{ Bottom: '350px'}}> */}
+             {/* </div */}
 
          </div>
                      

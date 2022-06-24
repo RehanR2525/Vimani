@@ -7,19 +7,20 @@
 
 .homeContainer{
     height: 100vh;
-    margin-bottom: 5rem ;
- 
 }
 
 .SliderComponent{
-    /* border: 1px solid red; */
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    background-color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
     margin-right: 6rem;
     margin-left: 6rem;
 }
 .Heading{
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     margin-left: 1rem;
-    /* border: 1px solid red; */
+}
+
+.HeaderComponent{
+    /* margin-bottom: 5rem; */
 }

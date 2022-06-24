@@ -4,7 +4,6 @@ const BrandsCard = ({item}) => {
 
 
 
-    console.log(item);
   return (
     <>
      <div className="cardContainer">
