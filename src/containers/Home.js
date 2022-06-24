@@ -129,7 +129,6 @@ export default function HomeComponent() {
 
         <div className="SliderComponent">
             <h2 className="Heading">Today's Deals</h2>
-             {/* <DealsCarousel data={todayDeal.results}/> */}
              <DealsSliderComponent  data={todayDeal.results}/> 
            </div>
         <div className="SliderComponent">
