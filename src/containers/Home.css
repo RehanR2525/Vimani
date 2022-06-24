@@ -6,7 +6,10 @@
 
 
 .homeContainer{
+    margin-top: -11rem;
+    margin-bottom: 1rem;
     height: 100vh;
+
 }
 
 .SliderComponent{
@@ -18,9 +21,11 @@
 }
 .Heading{
     /* margin-bottom: 2rem; */
-    margin-left: 1rem;
+    margin-left: 1.5rem;
 }
 
 .HeaderComponent{
-    /* margin-bottom: 5rem; */
+
+    margin-top: 0px;
+    
 }

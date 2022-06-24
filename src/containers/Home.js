@@ -117,11 +117,6 @@ export default function HomeComponent() {
              <TodayDetailComponent   data = {seasonData}/>
            </div>
 
-
-
-            {/* <div style={{ paddingBottom: '50px'}}>
-             </div> */}
-
          </div>
 
         <div className="SliderComponent">
