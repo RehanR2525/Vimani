@@ -1,4 +1,6 @@
 import React from 'react'
+import './RecommendCarousel.css';
+import { NavLink } from 'react-router-dom';
 
 const RecommendedCard = ({item}) => {
   return (
@@ -15,8 +17,10 @@ const RecommendedCard = ({item}) => {
             marginBottom: "10px",
             }}
         />
-        <h6 style={{ fontSize: "1rem", padding: "5px 0" }}>{item.name}</h6>
-        <h6>
+         <NavLink to={"/product-details/" + item.name} className='mt-1 mx-4' style = {{textDecoration:"none" ,cursor:"Pointer",fontColor:"black"}}>
+        <h6 className="ItemName">{item.name}</h6>
+        </NavLink>
+        <h6 className="ItemName2">
             {item.max_discount.discount__max}% - ${item.min_discount.discount__avg}% Off
             </h6>
         </div>

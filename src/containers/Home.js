@@ -113,22 +113,38 @@ export default function HomeComponent() {
 
         <div className="homeContainer">
            <div className="HeaderComponent">
-            
              <TodayDetailComponent   data = {seasonData}/>
            </div>
 
          </div>
 
         <div className="SliderComponent">
+            <div className="head">
             <h2 className="Heading">Today's Deals</h2>
+
+            {/* <NavLink to='/' className='mt-1 mx-4' style = {{textDecoration:"none" ,cursor:"Pointer"}}>
+                 <p className='SeeMore'>See All Details</p>
+             </NavLink> */}
+            </div>
              <DealsSliderComponent  data={todayDeal.results}/> 
            </div>
         <div className="SliderComponent">
+        <div className="head">
           <h2 className="Heading">Recommended For You</h2>
+
+            {/* <NavLink to='/' className='mt-1 mx-4' style = {{textDecoration:"none" ,cursor:"Pointer"}}>
+                 <p className='SeeMore'>See All Details</p>
+             </NavLink> */}
+            </div>
              <RecommendCarousel data={recommendedData.results}/>
            </div>
         <div className="SliderComponent">
-         <h2 className="Heading">Brands</h2>
+        <div className="head">
+            <h2 className="Heading">Brands</h2>
+            <NavLink to='/brands' className='mt-1 mx-4' style = {{textDecoration:"none" ,cursor:"Pointer"}}>
+                 <p className='SeeMore'>See All Details</p>
+             </NavLink>
+            </div>
              <BrandsCarousel data={brands.results}/>
 
            </div>

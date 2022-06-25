@@ -6,6 +6,9 @@ import "slick-carousel/slick/slick-theme.css";
 import "./RecommendCarousel.css";
 import { AiOutlineArrowRight,AiOutlineArrowLeft } from "react-icons/ai";
 import RecommendedCard from './RecommendedCard.js';
+import { NavLink } from 'react-router-dom';
+
+
 
 const PreviousBtn = (props) => {
 
@@ -62,13 +65,14 @@ const carouselProperties = {
 };
 
 
-
 const RecommendCarousel = ({data}) => {
+  console.log(data);
   return (
     <>
     <div style={{ margin: "30px" }} className="carousel">
           <Slider {...carouselProperties}>
             {data && data.map((item) => (
+               
               <RecommendedCard item={item} />
             ))}
           </Slider>
