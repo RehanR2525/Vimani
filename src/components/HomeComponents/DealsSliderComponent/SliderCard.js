@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Container, Row, Col, Carousel,CardGroup } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 
 const SliderCard = ({item}) => {
