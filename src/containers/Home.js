@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import FeaturedTitle from "../components/HomeComponents/FeaturedTitle";
 import TodayDetailComponent from "../components/HomeComponents/TodayDetailComponent/TodayDetailComponent.jsx";
-import DealsCarousel from "../components/HomeComponents/DealsCarousel/DealsCarousel.jsx";
+// import DealsCarousel from "../components/HomeComponents/DealsCarousel/DealsCarousel.jsx";
 import BrandsCarousel from "../components/HomeComponents/BrandsCarousel/BrandsCarousel.jsx";
 import RecommendCarousel from "../components/HomeComponents/RecommendCarousel/RecommendCarousel.jsx";
 import DealsSliderComponent from "../components/HomeComponents/DealsSliderComponent/DealsSliderComponent.jsx";
@@ -16,6 +16,7 @@ import './Home.css';
 import banner2 from  '.../../../public/images/banner2.jpg';
 import banner3 from  '.../../../public/images/banner3.jpg';
 import './Home.css';
+import CardSkeletonComponent from "../components/SkeletonComponents/CardSkeletonComponent.jsx";
 
 const settings = {
     dots: true,
@@ -44,6 +45,8 @@ export default function HomeComponent() {
     const [recommendedData, setrecommendedData] = useState([]);
     const [todayDeal, setTodayDeal] = useState([]);
     const [brands, setBrands] = useState([]);
+   const [Loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         getBanner().then((banner) => {
@@ -110,13 +113,17 @@ export default function HomeComponent() {
                     </Carousel.Caption>
                 </Carousel.Item>
        </Carousel>
-
+        
         <div className="homeContainer">
            <div className="HeaderComponent">
              <TodayDetailComponent   data = {seasonData}/>
+             {/* <CardSkeletonComponent/> */}
            </div>
 
          </div>
+
+          <div className="sliderBar">
+             </div>
 
         <div className="SliderComponent">
             <div className="head">
@@ -126,7 +133,7 @@ export default function HomeComponent() {
                  <p className='SeeMore'>See All Details</p>
              </NavLink> */}
             </div>
-             <DealsSliderComponent  data={todayDeal.results}/> 
+             <DealsSliderComponent  data={todayDeal && todayDeal.results}/> 
            </div>
         <div className="SliderComponent">
         <div className="head">
@@ -136,7 +143,7 @@ export default function HomeComponent() {
                  <p className='SeeMore'>See All Details</p>
              </NavLink> */}
             </div>
-             <RecommendCarousel data={recommendedData.results}/>
+             <RecommendCarousel data={recommendedData && recommendedData.results}/>
            </div>
         <div className="SliderComponent">
         <div className="head">
@@ -161,8 +168,7 @@ export default function HomeComponent() {
 
 
 
-            {/* <div style={{ Bottom: '350px'}}> */}
-             {/* </div */}
+           
 
          </div>
                      

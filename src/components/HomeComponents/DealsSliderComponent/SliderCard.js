@@ -1,20 +1,22 @@
 import React from 'react'
 import { Button, Card, Container, Row, Col, Carousel,CardGroup } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import {LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 const SliderCard = ({item}) => {
   return (
    <>
         <div className="cardContainer">
-            <img
+            <LazyLoadImage
                 className="multi__image"
                 src={item.image}
                 alt=""
+                effect="blur"
                 style={{
                 width: "100%",
-                height: "50%",
+                height: "150px",
                 objectFit: "contain",
                 marginBottom: "10px",
                 }}
@@ -24,7 +26,7 @@ const SliderCard = ({item}) => {
             </NavLink>
 
             <h6 className="ItemName2">
-                {item.max_discount.discount__max}% - ${item.min_discount.discount__avg}% Off
+                {item.max_discount.discount__max}% - {item.min_discount.discount__avg}% Off
                 </h6>
             </div>
    </>

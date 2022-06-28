@@ -331,3 +331,15 @@ export const SearchProduct = (data) => {
             console.log(err);
         });
 };
+
+
+export const getProductDetails = (id) => {
+    return axios
+        .get(`${baseURL}rest/product/${id}`)
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};

@@ -56,7 +56,7 @@ const AllRoute = ({ data }) => {
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/product" component={Product} />
-                    <Route path="/product-details" component={ProductDetails} />
+                    <Route path="/product-details/:id" component={ProductDetails} />
                     <Route path="/brands" component={Brands} />
                     <PrivateRoute path="/wish-list" component={WishList} />
                     <PrivateRoute path="/cart" component={Cart} />

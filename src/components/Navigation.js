@@ -82,7 +82,7 @@ function Navigation() {
                             <Col lg={8} xs={12} style={{ display: 'flex' }}>
                                 <div className='px-4' style={{ width: '30%' }}>
                                     <NavLink to='/' style={{ textDecoration: 'none', fontWeight: 'bolder' }}>
-                                        <Navbar.Brand href="#home"><img src={logo}></img></Navbar.Brand>
+                                        <Navbar.Brand href="#home"><img src={logo} className="logoImage"></img></Navbar.Brand>
                                     </NavLink>
                                 </div>
                                 <div style={{ width: '70%' }}>
@@ -122,8 +122,8 @@ function Navigation() {
                                         ) : (
                                             <Nav>
                                                 <NavLink to='/login'>
-                                                    <Button variant='primary' className='mx-2'
-                                                        style={{ color: '#F8C648', }} >Login</Button>
+                                                    <Button variant='primary' className='mx-4 mt-2'
+                                                        style={{ color: 'white',fontWeight:'Bold' }} >Login</Button>
                                                 </NavLink>
                                             </Nav>
                                         )}

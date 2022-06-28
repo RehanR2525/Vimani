@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import ReactCardSlider from 'react-card-slider-component';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -66,13 +65,12 @@ const carouselProperties = {
 
 
 const RecommendCarousel = ({data}) => {
-  console.log(data);
+ 
   return (
     <>
     <div style={{ margin: "30px" }} className="carousel">
           <Slider {...carouselProperties}>
             {data && data.map((item) => (
-               
               <RecommendedCard item={item} />
             ))}
           </Slider>

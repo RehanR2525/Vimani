@@ -1,6 +1,4 @@
 import React,{useState} from 'react'
-import ReactCardSlider from 'react-card-slider-component';
-// import ReactCardSlider from '../DealsSlider/DealsSlider.jsx';
 import { AiOutlineArrowRight,AiOutlineArrowLeft } from "react-icons/ai";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -40,21 +38,21 @@ const carouselProperties = {
   centerPadding: "170px",
   responsive: [
     {
-      breakpoint: 426,
+      breakpoint: 600,
       settings: {
         slidesToShow: 1,
         centerMode: false,
       },
     },
     {
-      breakpoint: 769,
+      breakpoint: 900,
       settings: {
         slidesToShow: 3,
         centerMode: false,
       },
     },
     {
-      breakpoint: 1025,
+      breakpoint: 1100,
       settings: {
         slidesToShow: 4,
         centerMode: false,

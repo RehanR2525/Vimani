@@ -3,17 +3,16 @@ import './style.css';
 import BreadCrumbComponent from './components/BreadCrumb';
 
 import { Button, Card, Container, Row, Col, Form } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-// import { GetApprovedBlogs ,baseUrl} from '../../actions/user';
+import { NavLink,useParams } from 'react-router-dom';
+import { getProductDetails,baseUrl} from '../actions/Product';
 import HeaderImg from '../assets/product1.png';
 import detailsImg1 from '../assets/details1.png';
 import detailsImg2 from '../assets/details2.png';
 import detailsImg3 from '../assets/details3.png';
-
-
 import CloseIcon from '@mui/icons-material/Close';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import {LazyLoadImage } from 'react-lazy-load-image-component';
 
 import Slider from "react-slick";
 import Rating from '@mui/material/Rating';
@@ -36,7 +35,17 @@ const slideritem = [{}, {}, {}, {}, {}, {}, {}, {}]
 
 export default function HomeComponent() {
 
+    const [ProudctDetails, setProudctDetails] = useState();
+     let { id } = useParams();
 
+    useEffect(() => {
+       id &&  getProductDetails(id).then((details) => {
+            setProudctDetails(details);
+        });
+    }, [id])
+
+    // console.log(id);
+  console.log(ProudctDetails);
 
 
     return (
@@ -62,13 +71,13 @@ export default function HomeComponent() {
                 <Container>
                     <Row>
                         <Col lg={6} xs={12}>
-                            <img src={HeaderImg} style={{ height: 'auto', width: '100%' }} />
+                            <LazyLoadImage src={ProudctDetails && ProudctDetails.option_set[0].productimage_set[0].image} style={{ height: 'auto', width: '100%' }} />
                             <div className='my-4'>
                                 <Row>
                                 {
                                     carditem.map(()=>(
                                         <Col lg={4} xs={4}>
-                                        <img src={HeaderImg} style={{ height: '150px', width: '100%' }} />
+                                        <LazyLoadImage src={ProudctDetails && ProudctDetails.option_set[0].productimage_set[0].image} style={{ height: '150px', width: '100%' }} />
                                         </Col>
                                         ))   
                                 }
@@ -77,7 +86,7 @@ export default function HomeComponent() {
                         </Col>
                         <Col lg={6} xs={12}>
                             <div>
-                                <Card.Title className='text3' style={{ color: 'black', fontWeight: '600' }}>FLATHEADS Lightweight Casual Shoes for Men | Super Breathable Men’s Sneakers</Card.Title>
+                                <Card.Title className='text3' style={{ color: 'black', fontWeight: '600' }}>{ProudctDetails && ProudctDetails.name}</Card.Title>
                                 <div>
                                     <p className='text3 my-4' style={{ color: 'rgba(0, 0, 0, 0.5)' }}>Sold By :
                                         <span style={{ color: 'black' }}> Nike</span></p>
@@ -85,14 +94,14 @@ export default function HomeComponent() {
                                 <div style={{ display: 'flex' }}>
                                     <div style={{ width: '35%' }}>
                                         <p className='text3 mb-0' 
-                                           style={{ color: '#000000', fontSize: '24px', fontWeight: '600' }}>₹620.00</p>
+                                           style={{ color: '#000000', fontSize: '24px', fontWeight: '600' }}>₹{ProudctDetails && ProudctDetails.sale_price}</p>
                                         <p className='text3 mb-0' 
-                                           style={{ color: '#000000', textDecoration: "line-through" }}>₹670.00</p>
+                                           style={{ color: '#000000', textDecoration: "line-through" }}>₹{ProudctDetails && ProudctDetails.actual_price}</p>
                                     </div>
                                     <div className='px-1' style={{ width: '65%', background: 'rgba(255, 255, 255, 0.49)', display: 'flex', justifyContent: 'space-between' }}>
-                                        <p className='text3 mb-0 div-center' style={{ color: '#3BA732', fontWeight: 'bold' }}>12% OFF</p>
+                                        <p className='text3 mb-0 div-center' style={{ color: '#3BA732', fontWeight: 'bold' }}>{ProudctDetails && ProudctDetails.discount}% OFF</p>
                                         <p className='text3 mb-0 div-center' style={{ color: '#3BA732' }}>Saved :
-                                            <span style={{ fontWeight: 'bold' }}> ₹50.00</span>
+                                            <span style={{ fontWeight: 'bold' }}> ₹{ProudctDetails &&  ProudctDetails.actual_price - ProudctDetails.sale_price }</span>
                                         </p>
                                     </div>
                                 </div>
@@ -103,7 +112,7 @@ export default function HomeComponent() {
                                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                             <Rating style={{ color: '#113B6B', height: '14px', width: '14px' }} name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
                                             <p className='text3 text-dark' style={{ marginLeft: '30px' }}>(3.7)</p>
-                                            <p className='text3 text-dark ' style={{ fontWeight: 'bold' }}>42 Reviews</p>
+                                            <p className='text3 text-dark ' style={{ fontWeight: 'bold' }}>{ProudctDetails && ProudctDetails.review_count}</p>
                                         </div>
                                     </div>
                                 </Col>
@@ -175,7 +184,7 @@ export default function HomeComponent() {
                                 <div style={{width: '40%',display:'flex',alignItems:'center'}}>
                                     <p className='m-0 text3' style={{color:"black"}}>Quantity</p>
                                     <Form.Select className='text3 mx-4' style={{ color: '#113B6B',width:'100px' }} >
-                                        <option >10</option>
+                                        <option >{ProudctDetails && ProudctDetails.option_set[0].in_stock}</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
@@ -207,12 +216,7 @@ export default function HomeComponent() {
                         <div style={{ width: '50%' }}><h3 className='m-0 heading1 text-center'>SPECIFICATIONS</h3></div>
                     </div>
                     <p className='text3' style={{ color: 'black', marginTop: '50px' }}>
-                        Robbie Jones Shoes Are Designed To Keeping In Mind Durability As Well As Trends,
-                        The Most Stylish Range Of Shoes. They Are Exclusively Designed To Match The Latest
-                        Trends Of The New Generation. This Pair Of Shoes Is Sure To Make You Look Smart & Classy.
-                        These Will Go With Most Of Your Casual Outfits. This Product Is Made Of Premium Quality And Highly Material.
-                        Wearing This Prime Quality Amazing And Cozy Shoe With The Combination Of Jean And T-Shirt. It Presents Standard
-                        Look To Your Personality. We Are Always Providing Latest Fashion Shoes For Men's Casual Shoes For Men.
+                    {ProudctDetails && ProudctDetails.description}
                     </p>
                 </Container>
             </section>

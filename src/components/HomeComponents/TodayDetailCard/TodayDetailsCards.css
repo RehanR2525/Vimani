@@ -17,9 +17,6 @@
 }
 
 .imageGallery{
-    /* border: 1px solid red; */
-     /* display: grid;
-grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); */
         display: grid;
         grid-template-columns: auto auto ;
         padding: 10px;
